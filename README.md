@@ -19,17 +19,23 @@ The installation consists of installing both the *Splunk Add-on for Instana* and
 To install, navigate to Apps --> Manage Apps and select the “Install app from File” button.  Specify the location of the file you downloaded and install it.   
 
 ## Configuration
-The Splunk Add-on for Instana contains a global configuration for your Instana account URL and API authorization token.  In the Add-on, navigate to the Configuration tab and enter these values.  
-This Add-on also contains single input type, *Instana Metrics*. From the Inputs menu, enter the parameters for your input:
-  - Name your input
-  - Set the pollling interval
-  - Select the appropriate index
-  - Copy your Instana search query that you would like to run. 
-To retrieve metrics for all web applications and websites use: 
+The Splunk Add-on for Instana contains a global configuration for your Instana account URL and API authorization token.  Enter those values on the **Configuration** tab in the Add-on.
+
+From the Inputs menu, create new Input for the data you wish to collect.  Each Input requires 4 parameters:
+  - Input Name 
+  - Pollling interval
+  - Splunk Index to use
+  - Instana search filter that you would like to run
+  
+  To retrieve metrics for all web applications and websites use: 
   ```
   entity.pluginId:logicalwebapp OR entity.pluginId:browserLogicalService
   ```
-**Note:** This Add-on can be used for any entity (Instana Snapshot) that contains any of the following 4 metrics:  
+  To retrieve metrics for all databases: 
+  ```
+  entity.selfType:database 
+  ```
+**Note:** This Add-on can be used for entities (Instana Snapshots) that contains the following 4 metrics:  
   - latency     ==> Average Response Time
   - count       ==> Calls per second
   - error_rate  ==> Error Rate
