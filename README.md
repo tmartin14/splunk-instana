@@ -1,24 +1,27 @@
 # splunk-instana
-Splunk Integration Add-On for Instana data
+# Splunk Integration for Instana
+
 
 ## What's Needed?
 - Downloads
     - Splunk Add-on for Instana
     - Splunk App for Instana
 
-
 - Instana Information Required
-    - Instana API base URL   (https://<your account>.instana.io)
+    - Instana API tenanat URL   (https://<your account>.instana.io)
     - Instana API Authorization Token
     
-## Installation
+----  
+## Instana Performance Metrics Configuration
+----
+### Installation
 The installation consists of installing both the *Splunk Add-on for Instana* and the *Splunk App for Instana*.   
   - The Add-on is responsible for executing the rest API calls and collecting the data from Instana.  
   - The App provides a collection of dashboards and saved searches.  
   
 To install, navigate to Apps --> Manage Apps and select the “Install app from File” button.  Specify the location of the file you downloaded and install it.   
 
-## Configuration
+### Configuration
 The Splunk Add-on for Instana contains a global configuration for your Instana account URL and API authorization token.  Enter those values on the **Configuration** tab in the Add-on.
 
 From the Inputs menu, create new Input for the data you wish to collect.  Each Input requires 4 parameters:
@@ -42,10 +45,38 @@ From the Inputs menu, create new Input for the data you wish to collect.  Each I
   - instances   ==> number of instances running this entity
 
 
-## Start Searching
+### Start Searching
 Once the Splunk Add-on for Instana is installed and configured you can execute searches using: 
 ```
 sourcetype="instana:metrics"
 ```
 
+
 ----  
+## Sending Instana Issues to Splunk
+----
+Instana automatically monitors for "Issues" within your monitored environment.  To have Instana send Splunk Notifications when Issues are triggered, you will setup 2 components; a Splunk HEC Token and an Instana Webhook.
+
+### Splunk HTTP Event Collector (HEC) Token
+- In Splunk, navigate to Settings --> HTTP Event Collector and create a "New Token".  Be sure to set the source value to instana so that the Splunk Issues dashboard will show your notifications. Note the token value as you'll need to use that in the Instana webhook setup below. 
+```
+source=instana
+```
+
+### Instana Webhook
+- In Instana, configure an "Integration" in the Alerts section.  
+    - The "Base URL" should be: https://<Your_Splunk_Server>:8088/services/collector/raw?channel=<HEC_Token>  
+    - Create a new "Custom Parameter" Named "Authorization" with a value of "Splunk HEC_Token"  
+    - Add this Notification Channel to your existing Alert Policies in New Relic and you're all set!  
+
+Now, when Instana triggers an issue, it will be automatically sent to Splunk!   
+
+
+### Start Searching
+Start Searching using: 
+```
+source="instana"
+```
+
+
+
