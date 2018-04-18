@@ -69,9 +69,9 @@ Instana automatically monitors for "Issues" within your monitored environment.  
 
 ### Splunk HTTP Event Collector (HEC) Token
 - In Splunk, navigate to Settings --> HTTP Event Collector and create a "New Token".  Be sure to set the source value to instana so that the Splunk Issues dashboard will show your notifications. Note the token value as you'll need to use that in the Instana webhook setup below. 
-```
-source=instana
-```
+    ```
+    source=instana
+    ```
 - In Splunk query/basic authentication is disabled by default and it will neee to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
     ```
     [http://<input name>]
