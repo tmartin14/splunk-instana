@@ -7,10 +7,14 @@
     - Splunk App for Instana
 
 - Instana Information Required
-    - Instana API tenanat URL   (https://<your account>.instana.io)
+    - Instana API tenanat URL   (https://&lt;your account&gt;.instana.io)
     - Instana API Authorization Token
 
 - Splunk HTTP Event Collector (HEC) Token
+    - Splunk HEC URL  (https://<Your_Splunk_Server>:8088/services/collector?token=&lt;your-token&gt;)
+    - Splunk HEC Token
+    - Splunk Basic Authentication Enablement   (allowQueryStringAuth = true)
+    
 - Instana Webhook
 
 
@@ -68,19 +72,18 @@ Instana automatically monitors for "Issues" within your monitored environment.  
 ```
 source=instana
 ```
-
-### Instana Webhook
-- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  
-    - The "Base URL" should be: https://<Your_Splunk_Server>:8088/services/collector?token=<your-token>  
-    - Create a new "Custom Parameter" Named "Authorization" with a value of "Splunk HEC_Token" 
-    
-- In Splunk query/basic authentication is disabled by default, so it will neee to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
+- In Splunk query/basic authentication is disabled by default and it will neee to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
     ```
     [http://<input name>]
     allowQueryStringAuth = true
     ```
     
     For more details visit <a href="https://docs.splunk.com/Documentation/Splunk/7.0.3/Admin/Inputsconf">the Splunk documentation for inputs.conf</a> and search for "_allowQueryStringAuth_".  
+
+### Instana Webhook
+- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  
+    - The URL should be: https://<Your_Splunk_Server>:8088/services/collector?token=&lt;your-token&gt; 
+    
 
 
 Now, when Instana triggers an issue, it will be automatically sent to Splunk!   
