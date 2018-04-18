@@ -83,5 +83,11 @@ Start Searching using:
 source="instana"
 ```
 
+----  
+# Screenshots
+#### Performance Overview
+<a href="Splunk_instana0.png" rel="Performance Screenshot"><img src="Splunk_instana0.png" alt="Performance Screenshot" /></a>
 
+#### Issues Overview
+<a href="Splunk_Instana_Issues.png" rel="Issues Screenshot"><img src="Splunk_Instana_Issues.png" alt="Issues Screenshot" /></a>
 
