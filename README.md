@@ -70,9 +70,18 @@ source=instana
 ```
 
 ### Instana Webhook
-- In Instana, configure an "Integration" in the Alerts section.  
-    - The "Base URL" should be: https://<Your_Splunk_Server>:8088/services/collector/raw?channel=<HEC_Token>  
-    - Create a new "Custom Parameter" Named "Authorization" with a value of "Splunk HEC_Token"   
+- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  
+    - The "Base URL" should be: https://<Your_Splunk_Server>:8088/services/collector?token=<your-token>  
+    - Create a new "Custom Parameter" Named "Authorization" with a value of "Splunk HEC_Token" 
+    
+- In Splunk query/basic authentication is disabled by default, so it will neee to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
+    ```
+    [http://<input name>]
+    allowQueryStringAuth = true
+    ```
+    
+    For more details visit <a href="https://docs.splunk.com/Documentation/Splunk/7.0.3/Admin/Inputsconf">the Splunk documentation for inputs.conf</a> and search for "_allowQueryStringAuth_".  
+
 
 Now, when Instana triggers an issue, it will be automatically sent to Splunk!   
 
