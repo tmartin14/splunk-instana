@@ -13,7 +13,7 @@
 - Splunk HTTP Event Collector (HEC) Token
     - Splunk HEC URL  (https://<Your_Splunk_Server>:8088/services/collector?token=&lt;your-token&gt;)
     - Splunk HEC Token
-    - Splunk Basic Authentication Enablement   (allowQueryStringAuth = true)
+    - Enable Splunk Basic Authentication 
     
 - Instana Webhook
 
@@ -72,7 +72,7 @@ Instana automatically monitors for "Issues" within your monitored environment.  
     ```
     source=instana
     ```
-- In Splunk query/basic authentication is disabled by default and it will neee to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
+- In Splunk query/basic authentication is disabled by default and it will need to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
     ```
     [http://<input name>]
     allowQueryStringAuth = true
@@ -98,8 +98,8 @@ source="instana"
 ----  
 # Screenshots
 #### Performance Overview
-<a href="Splunk_instana0.png" rel="Performance Screenshot"><img src="Splunk_instana0.png" alt="Performance Screenshot" /></a>
+<a href="images/Splunk_instana0.png" rel="Performance Screenshot"><img src="images/Splunk_instana0.png" alt="Performance Screenshot" /></a>
 
 #### Issues Overview
-<a href="Splunk_Instana_Issues.png" rel="Issues Screenshot"><img src="Splunk_Instana_Issues.png" alt="Issues Screenshot" /></a>
+<a href="images/Splunk_Instana_Issues.png" rel="Issues Screenshot"><img src="images/Splunk_Instana_Issues.png" alt="Issues Screenshot" /></a>
 
