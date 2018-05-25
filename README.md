@@ -3,8 +3,8 @@
 
 ## What's Needed?
 - Downloads
-    - Splunk Add-on for Instana
-    - Splunk App for Instana
+    - Instana Add-on for Splunk
+    - Instana App for Splunk
 
 - Instana Information Required
     - Instana API tenanat URL   (https://&lt;your account&gt;.instana.io)
@@ -23,14 +23,14 @@
 # Instana Performance Metrics Configuration
 
 ### Installation
-The installation consists of installing both the *Splunk Add-on for Instana* and the *Splunk App for Instana*.   
+The installation consists of installing both the *Instana Add-on for Splunk* and the *Instana App for Splunk*.   
   - The Add-on is responsible for executing the rest API calls and collecting the data from Instana.  
   - The App provides a collection of dashboards and saved searches.  
   
 To install, navigate to Apps --> Manage Apps and select the “Install app from File” button.  Specify the location of the file you downloaded and install it.   
 
 ### Configuration
-The Splunk Add-on for Instana contains a global configuration for your Instana account URL and API authorization token.  
+The Instana Add-on for Splunk contains a global configuration for your Instana account URL and API authorization token.  
 
 Enter those values on the **Configuration** tab in the Add-on.  You will find the settings in the **Add-On Settings** tab.
 
@@ -56,7 +56,7 @@ Next, create a new Input for the data you wish to collect via the **Inputs** men
 
 
 ### Start Searching
-Once the Splunk Add-on for Instana is installed and configured you can execute searches using: 
+Once the Instana Add-on for Splunk is installed and configured you can execute searches using: 
 ```
 sourcetype="instana:metrics"
 ```
