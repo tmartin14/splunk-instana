@@ -11,13 +11,9 @@
     - Instana API Authorization Token
 
 - Splunk HTTP Event Collector (HEC) Token
-    - Splunk HEC URL  (https://<Your_Splunk_Server>:8088/services/collector?token=&lt;your-token&gt;)
+    - Splunk HEC URL  (https://<Your_Splunk_Server>:8088/services/collector)
     - Splunk HEC Token
-    - Enable Splunk Basic Authentication 
     
-- Instana Webhook
-
-
 
 ----  
 # Instana Performance Metrics Configuration
@@ -61,32 +57,16 @@ Once the Instana Add-on for Splunk is installed and configured you can execute s
 sourcetype="instana:metrics"
 ```
 
-
 ----  
 # Sending Instana Issues to Splunk
 
-Instana automatically monitors for "Issues" within your monitored environment.  To have Instana send Splunk Notifications when Issues are triggered, you will setup 3 components; a Splunk HEC Token, an Instana Webhook, and a separate web server to process the webhook and forward the Issue to Splunk (this 3rd component will become native functionality to Instana in the future).  
+Instana automatically monitors for "Issues" within your monitored environment.  To have Instana send Splunk Notifications when Issues are triggered, you will setup 2 components; a Splunk HEC Token and an Instana Alerting Integration for Splunk.  
 
 ### Splunk HTTP Event Collector (HEC) Token
-- In Splunk, navigate to Settings --> HTTP Event Collector and create a "New Token".  Be sure to set the source value to instana so that the Splunk Issues dashboard will show your notifications. Note the token value as you'll need to use that in the Instana webhook setup below. 
-    ```
-    source=instana
-    ```
-- In Splunk query/basic authentication is disabled by default and it will need to be enabled.  To enable this feature add the following to your <Splunk Home>/etc/system/inputs.conf file:
-    ```
-    [http://<input name>]
-    allowQueryStringAuth = true
-    ```
-    
-    For more details visit <a href="https://docs.splunk.com/Documentation/Splunk/7.0.3/Admin/Inputsconf">the Splunk documentation for inputs.conf</a> and search for "_allowQueryStringAuth_".  
+- In Splunk, navigate to Settings --> HTTP Event Collector and create a "New Token".  Note the token value as you'll need to use that in the Instana Alerting Integration. 
 
-### Instana Webhook
-- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  (Note:  The URL will be the server you setup in the next step.)
-    
-### Webserver to forward the webhook with authenticaion
-- For more information, please visit <a href="https://github.com/steveww/splunk-gateway ">https://github.com/steveww/splunk-gateway</a>.
-- The Splunk URL will be: https://<Your_Splunk_Server>:8088/services/collector?token=&lt;your-token&gt; 
-
+### Instana Alerting Integration for Splunk
+- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  Follow the menus from Settings --> Alerting --> Integration then click on the Splunk button.  Once here simply enter the URL for your Splunk server (https://<Your_Splunk_Server>:8088/services/collector) and the Splunk HEC token you created above.  
 
 Now, when Instana triggers an issue, it will be automatically sent to Splunk!   
 
@@ -94,7 +74,7 @@ Now, when Instana triggers an issue, it will be automatically sent to Splunk!
 ### Start Searching
 Start Searching using: 
 ```
-source="instana"
+sourcetype="instana:issues"
 ```
 
 ----  
