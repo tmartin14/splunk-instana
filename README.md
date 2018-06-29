@@ -65,11 +65,12 @@ Instana automatically monitors for "Issues" within your monitored environment.  
 ### Splunk HTTP Event Collector (HEC) Token
 - In Splunk, navigate to Settings --> HTTP Event Collector and create a "New Token".  Note the token value as you'll need to use that in the Instana Alerting Integration. 
 
+
 ### Instana Alerting Integration for Splunk
-- In Instana, configure an "Integration" in your user "Settings".   You can find this your User Account in the upper right corner of the website.  Follow the menus from Settings --> Alerting --> Integration then click on the Splunk button.  Once here simply enter the URL for your Splunk server (https://<Your_Splunk_Server>:8088/services/collector) and the Splunk HEC token you created above.  
+- In Instana, configure an "Integration" in your user "Settings".   You can find this in your User Account in the upper right corner of the website. Follow the menus from Settings --> Alerting --> Integration then click on the Splunk button.  Once here enter the URL for your Splunk server (https://<Your_Splunk_Server>:8088/services/collector) and the Splunk HEC token you created above.  
+- To configure which events are sent to Splunk go to Settings --> Alerting --> Configurations and select the event types and optionally define a filter, then select the Splunk integration.
 
 Now, when Instana triggers an issue, it will be automatically sent to Splunk!   
-
 
 ### Start Searching
 Start Searching using: 
