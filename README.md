@@ -1,7 +1,7 @@
 # Splunk Integration with Instana
 
 ## What's New?
-- This Integration is now being maintaine by Evgeni Wachnowezki of Instana! (evgeni.wachnowezki@instana.com)   
+- This Integration is now being maintained by Evgeni Wachnowezki of Instana! (evgeni.wachnowezki@instana.com)   
 - This updated version utilizes the latest Instana APIs to collect metrics and ingest them into Splunk.
 - The Issues data collection has not yet been migrated over, but that will come in a subsequent release.
 
